@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/ripsamuel/catalog/issues"
   },
-  "homepage": "https://github.com/ripsamuel/catalog#readme"
+  "homepage": "https://github.com/ripsamuel/catalog#readme",
+  "dependencies": {
+    "three": "^0.151.3"
+  },
+  "devDependencies": {
+    "vite": "^4.3.1"
+  }
 }

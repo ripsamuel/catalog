@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Three.js Example</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.131.2/build/three.min.js"></script>
+  <script>
+    // Variables globales
+    let scene, camera, renderer, cube, cubes;
+
+    // Inicialización
+    function init() {
+      // Crear la escena
+      scene = new THREE.Scene();
+
+      // Crear la cámara
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 5;
+
+      // Crear el renderizador
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Crear el cubo inicial
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+      cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+
+      // Crear la lista de cubos adicionales
+      cubes = [];
+
+      // Escuchar el evento de click
+      renderer.domElement.addEventListener('click', onClick, false);
+    }
+
+    // Evento de click
+    function onClick(event) {
+      // Crear los cubos adicionales
+      for (let i = 0; i < 4; i++) {
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const cube = new THREE.Mesh(geometry, material);
+        cube.position.x = Math.random() * 10 - 5;
+        cube.position.y = Math.random() * 10 - 5;
+        cube.position.z = Math.random() * 10 - 5;
+        cubes.push(cube);
+        scene.add(cube);
+      }
+
+      // Redirigir a una URL
+      // window.location.href = 'https://www.google.com';
+    }
+
+    // Animación
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      cubes.forEach(cube => {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+      });
+      renderer.render(scene, camera);
+    }
+
+    // Inicializar y animar
+    init();
+    animate();
+  </script>
+</body>
+</html>
