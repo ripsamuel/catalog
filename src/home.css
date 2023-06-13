@@ -4,7 +4,7 @@
     width: 100vw;
     height: 430px;
 }
-.section_proyects img {
+.section_proyects figure {
     width: 0px;
     flex-grow: 1;
     object-fit: cover;
@@ -13,7 +13,7 @@
 
 }
 
-.section_proyects img:hover {
+.section_proyects figure:hover {
     cursor: crosshair;
     width: 300px;
     opacity: 1;
